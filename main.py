@@ -19,9 +19,8 @@ CORS(app,resources={
     }
 })
 
-# ============================================
+
 # SETUP LOGGING
-# ============================================
 
 log_dir = 'logs'
 if not os.path.exists(log_dir):
@@ -45,9 +44,8 @@ console_handler = logging.StreamHandler()
 console_handler.setFormatter(logging.Formatter('%(asctime)s | %(message)s', datefmt='%H:%M:%S'))
 logger.addHandler(console_handler)
 
-# ============================================
 # GROQ AI SETUP
-# ============================================
+
 
 GROQ_API_KEY = #your api key here
 try:
@@ -59,15 +57,11 @@ except Exception as e:
     print(f"Groq initialization failed: {e}")
     groq_client = None
 
-# ============================================
 # SESSION STORAGE (RAM only)
-# ============================================
 
 active_sessions = {}
 
-# ============================================
 # PROVINCE DATA
-# ============================================
 
 PROVINCES = {
     '1': 'Mashonaland',
@@ -80,9 +74,7 @@ PROVINCES = {
     '8': 'Mashonaland West'
 }
 
-# ============================================
 # CROP DATA
-# ============================================
 
 CROP_CATEGORIES = {
     '1': 'cereal',
@@ -124,9 +116,7 @@ CROP_SERVICES = {
     '4': 'post_harvest'
 }
 
-# ============================================
 # LIVESTOCK DATA
-# ============================================
 
 ANIMAL_CATEGORIES = {
     '1': 'cattle',
@@ -161,9 +151,7 @@ LIVESTOCK_SERVICES = {
     '4': 'housing'
 }
 
-# ============================================
 # MENUS
-# ============================================
 
 LANGUAGE_MENUS = {
     'en': " Select your language\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n1. English\n2. Shona\n3. Ndebele\n",
@@ -264,11 +252,7 @@ EXIT_MESSAGES = {
     'sn': "Tatenda kushandisa ChatBox ZW! \nDzokai zvakare.",
     'nd': "Ngiyabonga ngokusebenzisa ChatBox ZW! \nPhindani futhi."
 }
-
-# ============================================
 # GROQ AI RESPONSE FUNCTION
-# ============================================
-
 def get_ai_response_groq(language, province, category, sub_category=None, service_type=None):
     """Generate AI response using Groq"""
     
@@ -375,9 +359,7 @@ def get_mock_response(language, province, category):
 # For backward compatibility
 get_ai_response = get_ai_response_groq
 
-# ============================================
 # USSD CALLBACK HANDLER
-# ============================================
 
 @app.route('/ussd', methods=['POST'])
 def ussd_callback():
@@ -689,9 +671,7 @@ def ussd_callback():
         mimetype='application/json'
     )
 
-# ============================================
 # HEALTH CHECK ENDPOINT
-# ============================================
 
 @app.route('/health', methods=['GET'])
 def health_check():
