@@ -1,0 +1,5 @@
+﻿@"
+flask>=2.3.0
+python-dotenv>=1.0.0
+"@ | Out-File -FilePath "requirements.txt" -Encoding UTF8
+Write-Host "✅ Created: requirements.txt" -ForegroundColor Green
